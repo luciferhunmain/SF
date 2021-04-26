@@ -11,7 +11,7 @@
 
 # heroku deploy button 2x if one not work/buffer try another
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/AmirulAndalib/torrenteechX/tree/master) deploy button-1
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/luciferhunmain/SF/) deploy button-1
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) deploy button-2 
 
