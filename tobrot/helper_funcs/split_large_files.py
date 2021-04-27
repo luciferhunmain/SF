@@ -41,7 +41,7 @@ async def split_large_files(input_file):
         end_time = minimum_duration
         base_name = os.path.basename(input_file)
         input_extension = base_name.split(".")[-1]
-        ebase_name = base_name.replace(input_extension, "")
+        ebase_name = base_name.replace("." + input_extension, "")
         LOGGER.info(input_extension)
 
         i = 0
@@ -78,7 +78,7 @@ async def split_large_files(input_file):
         # handle normal files here
         base_name = os.path.basename(input_file)
         input_extension = base_name.split(".")[-1]
-        ebase_name = base_name.replace(input_extension, "")
+        ebase_name = base_name.replace("." + input_extension, "")
         LOGGER.info(input_extension)
         i = 0
         parted_file_name = "{}_{}.{}".format(
@@ -99,7 +99,7 @@ async def split_large_files(input_file):
     elif SP_LIT_ALGO_RITH_M.lower() == "rar":
         base_name = os.path.basename(input_file)
         input_extension = base_name.split(".")[-1]
-        ebase_name = base_name.replace(input_extension, "")
+        ebase_name = base_name.replace("." + input_extension, "")
         LOGGER.info(input_extension)
         i = 0
         parted_file_name = "{}_{}.{}".format(
