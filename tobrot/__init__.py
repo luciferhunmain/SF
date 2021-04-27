@@ -75,7 +75,7 @@ PROCESS_MAX_TIMEOUT = 3600
 #
 SP_LIT_ALGO_RITH_M = os.environ.get("SP_LIT_ALGO_RITH_M", "hjs")
 ARIA_TWO_STARTED_PORT = int(os.environ.get("ARIA_TWO_STARTED_PORT", "6800"))
-EDIT_SLEEP_TIME_OUT = int(os.environ.get("EDIT_SLEEP_TIME_OUT", "1"))
+EDIT_SLEEP_TIME_OUT = int(os.environ.get("EDIT_SLEEP_TIME_OUT", "15"))
 MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START = int(
     os.environ.get("MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START", 300)
 )
@@ -86,10 +86,10 @@ UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "░")
 # add offensive API
 TG_OFFENSIVE_API = os.environ.get("TG_OFFENSIVE_API", None)
 CUSTOM_FILE_NAME = os.environ.get("CUSTOM_FILE_NAME", "")
-LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech@TorrentToTgBot")
+LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech")
 LEECH_UNZIP_COMMAND = os.environ.get("LEECH_UNZIP_COMMAND", "leechunzip@TorrentToTgBot")
 LEECH_ZIP_COMMAND = os.environ.get("LEECH_ZIP_COMMAND", "leechzip@TorrentToTgBot")
-GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech@TorrentToTgBot")
+GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech@TorrentToTgBot@TorrentToTgBot")
 GLEECH_UNZIP_COMMAND = os.environ.get("GLEECH_UNZIP_COMMAND", "gleechunzip@TorrentToTgBot")
 GLEECH_ZIP_COMMAND = os.environ.get("GLEECH_ZIP_COMMAND", "gleechzip@TorrentToTgBot")
 YTDL_COMMAND = os.environ.get("YTDL_COMMAND", "ytdl@TorrentToTgBot")
