@@ -86,7 +86,7 @@ UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "░")
 # add offensive API
 TG_OFFENSIVE_API = os.environ.get("TG_OFFENSIVE_API", None)
 CUSTOM_FILE_NAME = os.environ.get("CUSTOM_FILE_NAME", "")
-LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech")
+LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech@TorrentToTgBot")
 LEECH_UNZIP_COMMAND = os.environ.get("LEECH_UNZIP_COMMAND", "leechunzip@TorrentToTgBot")
 LEECH_ZIP_COMMAND = os.environ.get("LEECH_ZIP_COMMAND", "leechzip@TorrentToTgBot")
 GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech@TorrentToTgBot@TorrentToTgBot")
