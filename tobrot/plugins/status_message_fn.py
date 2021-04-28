@@ -37,7 +37,7 @@ async def status_message_f(client, message):
             pass
         if download.status == "active":
             total_length_size = str(download.total_length_string())
-            progress_percent_string = str(download.progress_string())
+            progress_string = str(download.completed_length_string())
             down_speed_string = str(download.download_speed_string())
             up_speed_string = str(download.upload_speed_string())
             download_current_status = str(download.status)
@@ -48,7 +48,7 @@ async def status_message_f(client, message):
             msg += " | "
             msg += f"{total_length_size}"
             msg += " | "
-            msg += f"{progress_percent_string}"
+            msg += f"{progress_string}"
             msg += " | "
             msg += f"{DOWNLOAD_ICON} {down_speed_string}"
             msg += " | "
