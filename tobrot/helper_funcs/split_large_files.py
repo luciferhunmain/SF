@@ -6,13 +6,14 @@ import asyncio
 import logging
 import os
 import time
+from fsplit.filesplit import Filesplit
 
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from tobrot import LOGGER, MAX_TG_SPLIT_FILE_SIZE, SP_LIT_ALGO_RITH_M
 
 
-async def split_large_files(input_file):
+async def split_large_files(input_file,f,s):
     working_directory = os.path.dirname(os.path.abspath(input_file))
     new_working_directory = os.path.join(working_directory, str(time.time()))
     # create download directory, if not exist
@@ -76,17 +77,7 @@ async def split_large_files(input_file):
 
     elif SP_LIT_ALGO_RITH_M.lower() == "hjs":
         # handle normal files here
-        o_d_t = os.path.join(new_working_directory, os.path.basename(input_file))
-        o_d_t = o_d_t + "."
-        file_genertor_command = [
-            "split",
-            "--numeric-suffixes=1",
-            "--suffix-length=3",
-            f"--bytes={MAX_TG_SPLIT_FILE_SIZE}",
-            input_file,
-            o_d_t,
-        ]
-        await run_comman_d(file_genertor_command)
+        fs.split(file=input_file, split_size=MAX_TG_SPLIT_FILE_SIZE, output_dir=new_working_directory, callback=split_large_files)
 
     elif SP_LIT_ALGO_RITH_M.lower() == "rar":
         o_d_t = os.path.join(
