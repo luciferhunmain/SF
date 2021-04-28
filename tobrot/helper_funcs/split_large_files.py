@@ -77,7 +77,17 @@ async def split_large_files(input_file):
 
     elif SP_LIT_ALGO_RITH_M.lower() == "hjs":
         # handle normal files here
-        fs.split(file=input_file, split_size=MAX_TG_SPLIT_FILE_SIZE, output_dir=new_working_directory, callback=split_large_files)
+        o_d_t = os.path.join(new_working_directory, os.path.basename(input_file))
+        o_d_t = o_d_t + "."
+        file_genertor_command = [
+            "split",
+            "--numeric-suffixes=1",
+            "--suffix-length=5",
+            f"--bytes={MAX_TG_SPLIT_FILE_SIZE}",
+            input_file,
+            o_d_t,
+        ]
+        await run_comman_d(file_genertor_command)
 
     elif SP_LIT_ALGO_RITH_M.lower() == "rar":
         o_d_t = os.path.join(
