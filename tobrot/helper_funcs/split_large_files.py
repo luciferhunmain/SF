@@ -88,8 +88,6 @@ async def split_large_files(input_file):
         o_d_t = os.path.join(new_working_directory, parted_file_name)
         file_genertor_command = [
             "split",
-            "--numeric-suffixes=1",
-            "--suffix-length=5",
             f"--bytes={MAX_TG_SPLIT_FILE_SIZE}",
             input_file,
             o_d_t,
