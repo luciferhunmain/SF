@@ -38,6 +38,8 @@ async def status_message_f(client, message):
         if download.status == "active":
             total_length_size = str(download.total_length_string())
             progress_string = str(download.completed_length_string())
+            progress_percen_string = str(download.progress_length_string())
+            progress_percent_string = progress_percen_string.replace("%","")
             down_speed_string = str(download.download_speed_string())
             up_speed_string = str(download.upload_speed_string())
             download_current_status = str(download.status)
@@ -48,7 +50,9 @@ async def status_message_f(client, message):
             msg += " | "
             msg += f"{total_length_size}"
             msg += " | "
-            msg += f"{progress_string}"
+            msg += f"{progress_string}"+"/100%"
+            msg += " | "
+            msg += f"{progress_percent_string}"
             msg += " | "
             msg += f"{DOWNLOAD_ICON} {down_speed_string}"
             msg += " | "
@@ -73,10 +77,10 @@ async def status_message_f(client, message):
     free = humanbytes(free)
 
     ms_g = (
-        f"<b>Bot Uptime</b>: <code>{hr} : {mi} : {se}</code>\n"
-        f"<b>Total disk space</b>: <code>{total}</code>\n"
-        f"<b>Used</b>: <code>{used}</code>\n"
-        f"<b>Free</b>: <code>{free}</code>\n"
+        f"<b>Bot Uptime</b>: {hr}:{mi}:{se}\n"
+        f"<b>Used</b>: {used}\n"
+        f"<b>Free</b>: {free}\n"
+        f"<b>Total disk space</b>: {total}\n"
     )
     # LOGGER.info(ms_g)
 
