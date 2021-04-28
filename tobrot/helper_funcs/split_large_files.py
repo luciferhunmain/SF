@@ -79,18 +79,15 @@ async def split_large_files(input_file):
         base_name = os.path.basename(input_file)
         input_extension = base_name.split(".")[-1]
         ebase_name = base_name.replace("." + input_extension, "")
-        LOGGER.info(input_extension)
-        i = 0
-        parted_file_name = "{}_{}.{}".format(
-                str(ebase_name), str(i).zfill(5), str(input_extension)
-            )
-
-        o_d_t = os.path.join(new_working_directory, parted_file_name)
+        o_d_t = ebase_name + "_"
         file_genertor_command = [
             "split",
+            "--numeric-suffixes=1",
+            "--suffix-length=5",
             f"--bytes={MAX_TG_SPLIT_FILE_SIZE}",
             input_file,
             o_d_t,
+            input_extension,
         ]
         await run_comman_d(file_genertor_command)
 
