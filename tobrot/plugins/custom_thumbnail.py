@@ -1,6 +1,6 @@
 """ThumbNail utilities, © @AnyDLBot"""
 
-
+from asyncio import sleep
 import os
 
 from hachoir.metadata import extractMetadata
@@ -41,8 +41,12 @@ async def save_thumb_nail(client, message):
             "✅ Custom video / file thumbnail saved. "
             + "This image will be used in the upload, till /clearthumbnail."
         )
+        await sleep(5)
+        await ismgs.delete()
     else:
         await ismgs.edit("❌ Reply to a photo to save custom thumbnail")
+        await sleep(5)
+        await ismgs.delete()
 
 
 async def clear_thumb_nail(client, message):
@@ -54,5 +58,9 @@ async def clear_thumb_nail(client, message):
     if os.path.exists(thumb_image_path):
         os.remove(thumb_image_path)
         await ismgs.edit("✅ Custom thumbnail cleared successfully.")
+        await sleep(5)
+        await ismgs.delete()
     else:
         await ismgs.edit("❌ Nothing to clear.")
+        await sleep(5)
+        await ismgs.delete()
