@@ -75,10 +75,11 @@ async def upload_to_tg(
                 quote=True
                 # reply_to_message_id=message.message_id
             )
+            await asyncio.sleep(5)
+            await new_m_esg.delete()
         for single_file in directory_contents:
             # recursion: will this FAIL somewhere?
             await upload_to_tg(
-                new_m_esg,
                 os.path.join(local_file_name, single_file),
                 from_user,
                 dict_contatining_uploaded_files,
@@ -101,11 +102,15 @@ async def upload_to_tg(
             number_of_files = len(totlaa_sleif)
             LOGGER.info(totlaa_sleif)
             ba_se_file_name = os.path.basename(local_file_name)
+            await asyncio.sleep(5)
+            await i_m_s_g.delete()
             await i_m_s_g.edit_text(
                 f"Detected File Size: {d_f_s} 😡\n"
                 f"<code>{ba_se_file_name}</code> splitted into {number_of_files} files.\n"
                 "trying to upload to Telegram, now ..."
             )
+            await asyncio.sleep(5)
+            await i_m_s_g.delete()
             for le_file in totlaa_sleif:
                 # recursion: will this FAIL somewhere?
                 await upload_to_tg(
