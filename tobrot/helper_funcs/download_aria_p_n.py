@@ -11,7 +11,6 @@ import time
 import aria2p
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from tobrot.helper_funcs.display_progress import humanbytes, Progress
 from tobrot import (
     ARIA_TWO_STARTED_PORT,
     AUTH_CHANNEL,
@@ -263,8 +262,6 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
         file = aria2.get_download(gid)
         complete = file.is_complete
         is_file = file.seeder
-        start_time = time.time()
-        local_file_name = str(Path(local_file_name).resolve())
         if not complete:
             if not file.error_message:
                 msg = ""
