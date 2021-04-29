@@ -283,9 +283,11 @@ async def check_progress_for_dl(aria2, gid, event, previous_message, local_file_
                     msgg = f"<b>Connenctions</b>: {file.connections}"
                 else:
                     msgg = f"<b>Torrent Details</b>: <b>S</b>: {file.num_seeders} <b>L</b>: {file.connections}"
-                msg = f"\n<b>Name</b>: {downloading_dir_name}"
-                msg += f"\n<b>Speed</b>: {file.download_speed_string()}"
-                msg += f"\n<b>Progress</b>: {Progress.progress_for_pyrogram} progress_args=(f"{os.path.basename(local_file_name)}",start_time) \n<b>Status</b>: {file.completed_length_string()} <b>of</b> {file.total_length_string()} \n<b>ETA</b>: {file.eta_string()} \n{msgg}"
+                msg = f"\n<b>Name</b>: `{downloading_dir_name}`"
+                msg += f"\n<b>Speed</b>: {file.download_speed_string()}\n"
+                msg += progress=prog.progress_for_pyrogram
+                msg += progress_args=(f"{os.path.basename(local_file_name)}",start_time,)
+                msg += f"\n<b>Status</b>: {file.completed_length_string()} <b>of</b> {file.total_length_string()} \n<b>ETA</b>: {file.eta_string()} \n{msgg}"
                 # msg += f"\nSize: {file.total_length_string()}"
 
                 # if is_file is None :
