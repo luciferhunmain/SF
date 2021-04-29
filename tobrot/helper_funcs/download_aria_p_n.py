@@ -277,12 +277,12 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None:
-                    msgg = f"**Connenctions**: {file.connections}"
+                    msgg = f"<b>Connenctions</b>: {file.connections}"
                 else:
-                    msgg = f"**Torrent Details**: **S**: {file.num_seeders} **L**: {file.connections}"
-                msg = f"\n**Name**:{downloading_dir_name}`"
-                msg += f"\n<b>Speed</b>: D: {file.download_speed_string()}"
-                msg += f"\n<b>Status</b>: {file.completed_length_string()} <b>of</b> {file.total_length_string()} \n**ETA**: {file.eta_string()} \n {msgg}"
+                    msgg = f"<b>Torrent Details</b>: S: {file.num_seeders} **L**: {file.connections}"
+                msg = f"\n<b>Name</b>:{downloading_dir_name}`"
+                msg += f"\n<b>Speed</b>: {file.download_speed_string()}"
+                msg += f"\n<b>Status</b>: {file.completed_length_string()} <b>of</b> {file.total_length_string()} \n<b>ETA</b>: {file.eta_string()} \n {msgg}"
                 # msg += f"\nSize: {file.total_length_string()}"
 
                 # if is_file is None :
@@ -340,9 +340,9 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             await event.edit(
                 f"Downloaded Successfully: `{file.name} ({file.total_length_string()})` 🤒"
             )
+            return True
             await asyncio.sleep(5)
             await event.delete()
-            return True
     except aria2p.client.ClientException:
         await event.edit(
             f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
@@ -362,18 +362,18 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             "Download Auto Canceled :\n\n"
             "Your Torrent/Link is Dead.".format(file.name)
         )
+        return False
         await asyncio.sleep(5)
         await event.delete()
-        return False
     except Exception as e:
         LOGGER.info(str(e))
         if "not found" in str(e) or "'file'" in str(e):
             await event.edit(
                 f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
             )
+            return False
             await asyncio.sleep(5)
             await event.delete()
-            return False
         else:
             LOGGER.info(str(e))
             await event.edit(
