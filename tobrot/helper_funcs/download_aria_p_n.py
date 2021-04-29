@@ -257,7 +257,7 @@ async def call_apropriate_function(
 
 
 # https://github.com/jaskaranSM/UniBorg/blob/6d35cf452bce1204613929d4da7530058785b6b1/stdplugins/aria.py#L136-L164
-async def check_progress_for_dl(aria2, gid, event, previous_message, local_file_name):
+async def check_progress_for_dl(aria2, gid, event, previous_message):
     # g_id = event.reply_to_message.from_user.id
     try:
         file = aria2.get_download(gid)
