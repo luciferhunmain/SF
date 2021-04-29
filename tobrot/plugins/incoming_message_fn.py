@@ -56,6 +56,8 @@ async def incoming_message_f(client, message):
     credit = await message.reply_text(
         f"🧲 Leeching for you <a href='tg://user?id={g_id}'>🤕</a>", parse_mode="html"
     )
+    await asyncio.sleep(5)
+    await credit.delete()
     i_m_sefg = await message.reply_text("processing...", quote=True)
     # get link from the incoming message
     if message.reply_to_message:
@@ -130,6 +132,8 @@ async def incoming_youtube_dl_f(client, message):
         f"💀 Downloading for you <a href='tg://user?id={current_user_id}'>🤕</a>",
         parse_mode="html",
     )
+    await asyncio.sleep(5)
+    await credit.delete()
     i_m_sefg = await message.reply_text("processing...", quote=True)
     # LOGGER.info(message)
     # extract link from message
@@ -205,6 +209,8 @@ async def g_yt_playlist(client, message):
             f"💀 Downloading for you <a href='tg://user?id={usr_id}'>🤗</a>",
             parse_mode="html",
         )
+        await asyncio.sleep(5)
+        await i_m_sefg.delete()
         await yt_playlist_downg(message, i_m_sefg, client, is_cloud)
 
     else:
