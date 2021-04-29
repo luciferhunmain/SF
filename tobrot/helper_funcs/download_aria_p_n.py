@@ -321,6 +321,8 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                             f"Download cancelled :\n<code>{file.name}</code>\n\n #MetaDataError"
                         )
                         file.remove(force=True, files=True)
+                        await asyncio.sleep(5)
+                        await event.delete()
                         return False
             else:
                 msg = file.error_message
@@ -338,11 +340,15 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             await event.edit(
                 f"Downloaded Successfully: `{file.name} ({file.total_length_string()})` 🤒"
             )
+            await asyncio.sleep(5)
+            await event.delete()
             return True
     except aria2p.client.ClientException:
         await event.edit(
             f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
         )
+        await asyncio.sleep(5)
+        await event.delete()
     except MessageNotModified as ep:
         LOGGER.info(ep)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
@@ -356,6 +362,8 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             "Download Auto Canceled :\n\n"
             "Your Torrent/Link is Dead.".format(file.name)
         )
+        await asyncio.sleep(5)
+        await event.delete()
         return False
     except Exception as e:
         LOGGER.info(str(e))
@@ -363,6 +371,8 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             await event.edit(
                 f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
             )
+            await asyncio.sleep(5)
+            await event.delete()
             return False
         else:
             LOGGER.info(str(e))
