@@ -257,12 +257,14 @@ async def call_apropriate_function(
 
 
 # https://github.com/jaskaranSM/UniBorg/blob/6d35cf452bce1204613929d4da7530058785b6b1/stdplugins/aria.py#L136-L164
-async def check_progress_for_dl(aria2, gid, event, previous_message):
+async def check_progress_for_dl(aria2, gid, event, previous_message, local_file_name):
     # g_id = event.reply_to_message.from_user.id
     try:
         file = aria2.get_download(gid)
         complete = file.is_complete
         is_file = file.seeder
+        start_time = time.time()
+        local_file_name = str(Path(local_file_name).resolve())
         if not complete:
             if not file.error_message:
                 msg = ""
@@ -283,7 +285,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     msgg = f"<b>Torrent Details</b>: <b>S</b>: {file.num_seeders} <b>L</b>: {file.connections}"
                 msg = f"\n<b>Name</b>: {downloading_dir_name}"
                 msg += f"\n<b>Speed</b>: {file.download_speed_string()}"
-                msg += f"\n<b>Progress</b>: {prog.progress_for_pyrogram} \n<b>Status</b>: {file.completed_length_string()} <b>of</b> {file.total_length_string()} \n<b>ETA</b>: {file.eta_string()} \n {msgg}"
+                msg += f"\n<b>Progress</b>: {Progress.progress_for_pyrogram} progress_args=(f"{os.path.basename(local_file_name)}",start_time) \n<b>Status</b>: {file.completed_length_string()} <b>of</b> {file.total_length_string()} \n<b>ETA</b>: {file.eta_string()} \n{msgg}"
                 # msg += f"\nSize: {file.total_length_string()}"
 
                 # if is_file is None :
