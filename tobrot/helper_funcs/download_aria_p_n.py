@@ -43,7 +43,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--enable-rpc")
     aria2_daemon_start_cmd.append("--follow-torrent=mem")
     aria2_daemon_start_cmd.append("--max-connection-per-server=10")
-    aria2_daemon_start_cmd.append("--min-split-size=1M")
+    aria2_daemon_start_cmd.append("--min-split-size=10M")
     aria2_daemon_start_cmd.append("--rpc-listen-all=false")
     aria2_daemon_start_cmd.append(f"--rpc-listen-port={ARIA_TWO_STARTED_PORT}")
     aria2_daemon_start_cmd.append("--rpc-max-request-size=1024M")
@@ -277,12 +277,12 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None:
-                    msgg = f"<b>Connnections</b>: {file.connections}"
+                    msgg = f"Conn: {file.connections} <b>|</b> GID: <code>{gid}</code>"
                 else:
-                    msgg = f"<b>Torrent Details</b>: <b>S</b>: {file.num_seeders} <b>L</b>: {file.connections}"
-                msg = f"\n<b>Downloading</b>: {downloading_dir_name}"
+                    msgg = f"P: {file.connections} | S: {file.num_seeders} <b>|</b> GID: <code>{gid}</code>"
+                msg = f"\n`{downloading_dir_name}`"
                 msg += f"\n<b>Speed</b>: {file.download_speed_string()}"
-                msg += f"\n<b>Downloaded</b>: {file.completed_length_string()} <b>of</b> {file.total_length_string()} \n<b>ETA</b>: {file.eta_string()} \n{msgg}"
+                msg += f"\n<b>Status</b>: {file.progress_string()} <b>of</b> {file.total_length_string()} <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
                 # msg += f"\nSize: {file.total_length_string()}"
 
                 # if is_file is None :
@@ -352,6 +352,13 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
     except MessageNotModified as ep:
         LOGGER.info(ep)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
+        await check_progress_for_dl(aria2, gid, event, previous_message)
+    except FloodWait as e:
+        LOGGER.info(e)
+        time.sleep(e.x)
+    except RecursionError:
+        file.remove(force=True, files=True)
+        await event.edit(
             "Download Auto Canceled :\n\n"
             "Your Torrent/Link is Dead.".format(file.name)
         )
