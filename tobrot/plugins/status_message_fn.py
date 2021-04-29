@@ -37,34 +37,15 @@ async def status_message_f(client, message):
             pass
         if download.status == "active":
             total_length_size = str(download.total_length_string())
-            progress_string = str(download.completed_length_string())
-            progress_percen_string = str(download.progress_string())
-            progress_percent_string = progress_percen_string.replace("%","")
+            progress_length = str(download.completed_length_string())
             down_speed_string = str(download.download_speed_string())
             up_speed_string = str(download.upload_speed_string())
             download_current_status = str(download.status)
             e_t_a = str(download.eta_string())
-            current_gid = str(download.gid)
-            #
-            msg += f"<u>{downloading_dir_name}</u>"
-            msg += " | "
-            msg += f"{total_length_size}"
-            msg += " | "
-            msg += f"{progress_string}"+"/100%"
-            msg += " | "
-            msg += f"{progress_percent_string}"
-            msg += " | "
-            msg += f"{DOWNLOAD_ICON} {down_speed_string}"
-            msg += " | "
-            msg += f"{UPLOAD_ICON} {up_speed_string}"
-            msg += " | "
-            msg += f"{e_t_a}"
-            msg += " | "
-            msg += f"{download_current_status}"
-            msg += " | "
-            msg += f"<code>/cancel {current_gid}</code>"
-            msg += " | "
-            msg += "\n\n"
+            msg = f"<b>Name</b>: <u>{downloading_dir_name}</u>\n
+                    <b>Progress</b>: {progress_length} of {total_length_size}\n
+                    <b>Speed</b>: D: {down_speed_string} U: {up_speed_string}\n
+                    <b>ETA</b>: {e_t_a}\n|n"
         # LOGGER.info(msg)
 
         if msg == "":
