@@ -19,12 +19,12 @@ async def new_join_f(client, message):
 
 
 async def help_message_f(client, message):
-    # await message.reply_text("No one can help you buddy expect yourself, for any help/support/issue contact my master Softfreakz!", quote=True)
+    # await message.reply_text("No one can help you buddy expect yourself, for any help/support/issue contact my master @Lucif3rHun!", quote=True)
     # channel_id = str(AUTH_CHANNEL)[4:]
     # message_id = 99
     # display the /help
 
     await message.reply_text(
-        """No one can help you buddy expect yourself, for any help/support/issue contact my master Softfreakz!""",
+        """No one can help you buddy expect yourself, for any help/support/issue contact my master @Lucif3rHun!""",
         disable_web_page_preview=True,
     )
