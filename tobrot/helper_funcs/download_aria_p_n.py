@@ -320,9 +320,9 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                         await event.edit(
                             f"Download cancelled :\n<code>{file.name}</code>\n\n #MetaDataError"
                         )
-                        file.remove(force=True, files=True)
                         await asyncio.sleep(5)
                         await event.delete()
+                        file.remove(force=True, files=True)
                         return False
             else:
                 msg = file.error_message
@@ -336,13 +336,13 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             LOGGER.info(
                 f"Downloaded Successfully: `{file.name} ({file.total_length_string()})` 🤒"
             )
-            await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
+
             await event.edit(
                 f"Downloaded Successfully: `{file.name} ({file.total_length_string()})` 🤒"
             )
-            return True
             await asyncio.sleep(5)
             await event.delete()
+            return True
     except aria2p.client.ClientException:
         await event.edit(
             f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
@@ -362,23 +362,25 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             "Download Auto Canceled :\n\n"
             "Your Torrent/Link is Dead.".format(file.name)
         )
-        return False
         await asyncio.sleep(5)
         await event.delete()
+        return False
     except Exception as e:
         LOGGER.info(str(e))
         if "not found" in str(e) or "'file'" in str(e):
             await event.edit(
                 f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
             )
-            return False
             await asyncio.sleep(5)
             await event.delete()
+            return False
         else:
             LOGGER.info(str(e))
             await event.edit(
                 "<u>error</u> :\n<code>{}</code> \n\n#error".format(str(e))
             )
+            await asyncio.sleep(5)
+            await event.delete()
             return False
 
 
