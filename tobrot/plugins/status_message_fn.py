@@ -40,7 +40,7 @@ async def status_message_f(client, message):
             up_speed_string = str(download.upload_speed_string())
             download_current_status = str(download.status)
             e_t_a = str(download.eta_string())
-            msg = f"<b>Name</b>: <u>{downloading_dir_name}</u> \n<b>Speed</b>: D: {down_speed_string} U: {up_speed_string} \n<b>Progress</b>: {progress_length} of {total_length_size} \n<b>ETA</b>: {e_t_a}\n\n"
+            msg += f"<b>Name</b>: <u>{downloading_dir_name}</u> \n<b>Speed</b>: D: {down_speed_string} U: {up_speed_string} \n<b>Progress</b>: {progress_length} of {total_length_size} \n<b>ETA</b>: {e_t_a}\n\n"
         # LOGGER.info(msg)
 
         if msg == "":
