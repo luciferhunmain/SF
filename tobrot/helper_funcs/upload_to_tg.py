@@ -114,6 +114,7 @@ async def upload_to_tg(
             for le_file in totlaa_sleif:
                 # recursion: will this FAIL somewhere?
                 await upload_to_tg(
+                    new_m_esg,
                     message,
                     os.path.join(splitted_dir, le_file),
                     from_user,
