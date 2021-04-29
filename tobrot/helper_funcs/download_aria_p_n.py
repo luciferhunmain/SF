@@ -11,6 +11,7 @@ import time
 import aria2p
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from tobrot.helper_funcs.display_progress import humanbytes, Progress
 from tobrot import (
     ARIA_TWO_STARTED_PORT,
     AUTH_CHANNEL,
@@ -282,7 +283,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     msgg = f"<b>Torrent Details</b>: <b>S</b>: {file.num_seeders} <b>L</b>: {file.connections}"
                 msg = f"\n<b>Name</b>: {downloading_dir_name}"
                 msg += f"\n<b>Speed</b>: {file.download_speed_string()}"
-                msg += f"\n<b>Status</b>: {file.completed_length_string()} <b>of</b> {file.total_length_string()} \n<b>ETA</b>: {file.eta_string()} \n {msgg}"
+                msg += f"\n<b>Progress</b>: {prog.progress_for_pyrogram} \n<b>Status</b>: {file.completed_length_string()} <b>of</b> {file.total_length_string()} \n<b>ETA</b>: {file.eta_string()} \n {msgg}"
                 # msg += f"\nSize: {file.total_length_string()}"
 
                 # if is_file is None :
