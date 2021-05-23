@@ -94,7 +94,7 @@ GLEECH_UNZIP_COMMAND = os.environ.get("GLEECH_UNZIP_COMMAND", "gleechunzip@Torre
 GLEECH_ZIP_COMMAND = os.environ.get("GLEECH_ZIP_COMMAND", "gleechzip@TorrentToTgBot")
 YTDL_COMMAND = os.environ.get("YTDL_COMMAND", "ytdl@TorrentToTgBot")
 GYTDL_COMMAND = os.environ.get("GYTDL_COMMAND", "gytdl@TorrentToTgBot")
-RENAME_TG_FILE = = os.environ.get("RENAME_TG_FILE", "rename@TorrentToTgBot")
+RENAME_TG_FILE = os.environ.get("RENAME_TG_FILE", "rename@TorrentToTgBot")
 RCLONE_CONFIG = os.environ.get("RCLONE_CONFIG", "")
 DESTINATION_FOLDER = os.environ.get("DESTINATION_FOLDER", "")
 INDEX_LINK = os.environ.get("INDEX_LINK", "")
