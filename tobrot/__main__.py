@@ -26,6 +26,7 @@ from tobrot import (
     LEECH_COMMAND,
     LEECH_UNZIP_COMMAND,
     LEECH_ZIP_COMMAND,
+    RENAME_TG_FILE,
     LOG_COMMAND,
     LOGGER,
     PYTDL_COMMAND,
